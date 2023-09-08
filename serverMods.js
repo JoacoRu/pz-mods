@@ -14,6 +14,12 @@ const mods = [
         mod_id: 'tsarslib',
     },
     {
+        name: 'Tsars Common Library 2.0 cache true music mp',
+        type: types[3],
+        workshop_id: '2688809268',
+        mod_id: 'TsarcraftCache2',
+    },
+    {
         name: 'Mod checker',
         type: types[3],
         workshop_id: '2937651968',
@@ -62,6 +68,12 @@ const mods = [
         type: types[3],
         workshop_id: '2613146550',
         mod_id: 'truemusic',
+    },
+    {
+        name: 'True Music Gatulio',
+        type: types[3],
+        workshop_id: '3031991573',
+        mod_id: 'gatulio_arg_playlist',
     },
     {
         name: 'Has Been Read Books',
@@ -269,7 +281,7 @@ const getParsedMods = (mods) => mods.reduce((previus, current) => {
     const { workshop_id, mod_id, map_id } = previus;
     console.log(previus, current)
 
-    const map_id_template = (previus.map_id  ?? '') + (current?.map_id ? ';' + current?.map_id : '' )
+    const map_id_template = (previus.map_id ?? '') + (current?.map_id ? ';' + current?.map_id : '')
 
     return {
         ...previus,
