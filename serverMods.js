@@ -267,11 +267,15 @@ const mods = [
 
 const getParsedMods = (mods) => mods.reduce((previus, current) => {
     const { workshop_id, mod_id, map_id } = previus;
+    console.log(previus, current)
+
+    const map_id_template = (previus.map_id  ?? '') + (current?.map_id ? ';' + current?.map_id : '' )
 
     return {
         ...previus,
         workshop_id: workshop_id.length > 0 ? `${workshop_id};${current.workshop_id}` : current.workshop_id,
         mod_id: mod_id.length > 0 ? `${mod_id};${current.mod_id}` : current.mod_id,
+        map_id: map_id_template
     }
 }, { mod_id: '', workshop_id: '', map_id: '' });
 
