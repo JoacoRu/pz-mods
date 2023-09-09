@@ -214,6 +214,18 @@ const mods = [
         mod_id: 'TheStar',
     },
     {
+        name: 'Steam Powered Generator',
+        type: types[2],
+        workshop_id: '2762648316',
+        mod_id: 'SteamPoweredGenerator',
+    },
+    {
+        name: 'Steam Powered Generator',
+        type: types[2],
+        workshop_id: '2763647806',
+        mod_id: 'MoreCLR_desc4mood',
+    },
+    {
         name: 'Reduce Weigth wood 70%',
         type: types[2],
         workshop_id: '2671262464',
