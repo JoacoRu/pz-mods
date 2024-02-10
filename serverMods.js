@@ -299,6 +299,12 @@ const mods = [
     workshop_id: '2988491347',
     vehicle_id: ['Base.BicycleRegular', 'Base.BicycleRegularScrap', 'Base.BicycleMTB', 'Base.BicycleMTBScrap', 'TrailerM101A3cargo'],
     mod_id: 'BB_Bicycles',
+  },
+  {
+    name: 'Worst Vehicle condition',
+    type: types[3],
+    workshop_id: '2475212568',
+    mod_id: 'Worse Vehicle Condition',
   }
 ];
 
