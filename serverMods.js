@@ -286,6 +286,12 @@ const mods = [
     type: types[0],
     workshop_id: '2642541073',
     mod_id: '92amgeneralM998',
+  },
+  {
+    name: 'More loot settings',
+    type: types[3],
+    workshop_id: '2812491628',
+    mod_id: 'MoreLootSettings',
   }
 ];
 
