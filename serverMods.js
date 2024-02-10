@@ -292,6 +292,13 @@ const mods = [
     type: types[3],
     workshop_id: '2812491628',
     mod_id: 'MoreLootSettings',
+  },
+  {
+    name: 'More loot settings',
+    type: types[3],
+    workshop_id: '2988491347',
+    vehicle_id: ['Base.BicycleRegular', 'Base.BicycleRegularScrap', 'Base.BicycleMTB', 'Base.BicycleMTBScrap', 'TrailerM101A3cargo'],
+    mod_id: 'BB_Bicycles',
   }
 ];
 
