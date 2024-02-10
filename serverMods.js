@@ -294,8 +294,8 @@ const mods = [
     mod_id: 'MoreLootSettings',
   },
   {
-    name: 'More loot settings',
-    type: types[3],
+    name: 'BB_Bicycles',
+    type: types[0],
     workshop_id: '2988491347',
     vehicle_id: ['Base.BicycleRegular', 'Base.BicycleRegularScrap', 'Base.BicycleMTB', 'Base.BicycleMTBScrap', 'TrailerM101A3cargo'],
     mod_id: 'BB_Bicycles',
@@ -305,6 +305,12 @@ const mods = [
     type: types[3],
     workshop_id: '2475212568',
     mod_id: 'Worse Vehicle Condition',
+  },
+  {
+    name: 'Braven utility',
+    type: types[3],
+    workshop_id: '2850135071',
+    mod_id: 'BB_Utils',
   }
 ];
 
