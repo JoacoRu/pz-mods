@@ -310,17 +310,26 @@ const map_id_template = (current, previus) => {
   return (previus.map_id?.length) ? previus.map_id + `;${current.map_id}` : current?.map_id
 }
 
+const vehicle_id_template = (currentVehicleId, previusVehicleId) => {
+	if (!!currentVehicleId && previusVehicleId) {
+  	return previusVehicleId + `;${currentVehicleId.join(';')}`;
+  }
+  
+  return currentVehicleId ?? previusVehicleId;
+}
+
 const getParsedMods = (mods) => mods.reduce((previus, current) => {
-  const { workshop_id, mod_id } = previus;
+  const { workshop_id, mod_id, vehicle_id } = previus;
   const map_id = map_id_template(current, previus);
 
   return {
     ...previus,
     workshop_id: workshop_id.length > 0 ? workshop_id + `;${current.workshop_id}` : current.workshop_id,
     mod_id: mod_id.length > 0 ? mod_id + `;${current.mod_id}` : current.mod_id,
-    map_id: map_id
+    map_id: map_id,
+    vehicle_id: vehicle_id_template(current.vehicle_id, vehicle_id)
   }
-}, { mod_id: '', workshop_id: '', map_id: '' });
+}, { mod_id: '', workshop_id: '', map_id: '', vehicle_id: '' });
 
 const getParsedName = (mods) => mods.map((mod) => mod.name);
 
