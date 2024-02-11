@@ -202,6 +202,12 @@ const mods = [
     mod_id: 'SmokingSoundsOverhaul',
   },
   {
+    name: 'Braven Utilities',
+    type: types[2],
+    workshop_id: '2850135071',
+    mod_id: 'BB_Utils',
+  },
+  {
     name: 'jiggas Green Fire (Build 40 & Build 41+ MP/Solo)',
     type: types[2],
     workshop_id: '1703604612',
@@ -294,7 +300,7 @@ const mods = [
     mod_id: 'MoreLootSettings',
   },
   {
-    name: 'More loot settings',
+    name: 'Bicycles',
     type: types[3],
     workshop_id: '2988491347',
     vehicle_id: ['Base.BicycleRegular', 'Base.BicycleRegularScrap', 'Base.BicycleMTB', 'Base.BicycleMTBScrap', 'TrailerM101A3cargo'],
