@@ -2,6 +2,13 @@ const types = ['vehicle', 'character', 'qualityOfLife', 'configuration', 'weapon
 
 const mods = [
   {
+    name: 'Rv interior',
+    type: types[3],
+    workshop_id: '2822286426',
+    mod_id: 'RV_Interior_MP',
+    map_id: 'vehicle_interior'
+  },
+  {
     name: 'Autotsar Motorclub',
     type: types[3],
     workshop_id: '2778576730',
