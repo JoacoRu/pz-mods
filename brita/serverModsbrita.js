@@ -325,7 +325,7 @@ const mods = [
   },
   {
     name: 'Land rover',
-    type: types[3],
+    type: types[0],
     workshop_id: '2761836419',
     mod_id: 'lrdisco1',
   }
