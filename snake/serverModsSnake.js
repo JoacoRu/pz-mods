@@ -226,8 +226,8 @@ const mods = [
     mod_id: 'SteamPoweredGenerator',
   },
   {
-    name: 'Steam Powered Generator',
-    type: types[2],
+    name: 'Descripción clara de Moodles',
+    type: types[1],
     workshop_id: '2763647806',
     mod_id: 'MoreCLR_desc4mood',
   },
