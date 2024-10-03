@@ -331,12 +331,6 @@ const mods = [
     mod_id: 'BB_Bicycles',
   },
   {
-    name: 'Worst Vehicle condition',
-    type: types[3],
-    workshop_id: '2475212568',
-    mod_id: 'Worse Vehicle Condition',
-  },
-  {
     name: 'Land rover',
     type: types[0],
     workshop_id: '2761836419',
@@ -346,7 +340,7 @@ const mods = [
     name: '86 Volvo B10M Bus',
     type: types[0],
     workshop_id: '3090364432',
-    mod_id: 'CytVolvoBus86,CytVolvoBus86Crash',
+    mod_id: 'CytVolvoBus86;CytVolvoBus86Crash',
   },
   {
     name: '91 RANGE ROVER Classic',
@@ -366,7 +360,7 @@ const mods = [
     name: '89 Isuzu Trooper',
     type: types[0],
     workshop_id: '2932549988',
-    vehicle_id: ['89trooper', '89trooperOP', '89trooperRS'],
+    vehicle_id: ['89trooper','89trooperOP', '89trooperRS'],
     mod_id: '89trooper',
   },
   {
@@ -456,13 +450,13 @@ const mods = [
     name: 'Pocket Kittens',
     type: types[0],
     workshop_id: '2883925239',
-    mod_id: 'PocketKittens,PocketKittensPsycho',
+    mod_id: 'PocketKittens;PocketKittensPsycho',
   },
   {
     name: '¡Argentina essentials!',
     type: types[0],
     workshop_id: '2841867787',
-    mod_id: 'ArgEss_B,PocketKittensPsycho',
+    mod_id: 'ArgEss_B',
   },
   {
     name: 'Gunslingers Redemption (Refreshed Version)',
@@ -492,7 +486,7 @@ const mods = [
     name: 'Autotsar Tuning Atelier - Jaap Wrungel [TUNING 2.0]',
     type: types[0],
     workshop_id: '2636100523',
-    mod_id: 'ATA_Jeep,ATA_Jeep_x10,ATA_Jeep_x2,ATA_Jeep_x4',
+    mod_id: 'ATA_Jeep;ATA_Jeep_x10;ATA_Jeep_x2;ATA_Jeep_x4',
   },
 ];
 
@@ -505,29 +499,37 @@ const map_id_template = (current, previus) => {
 }
 
 const vehicle_id_template = (currentVehicleId, previusVehicleId) => {
-  if (!!currentVehicleId && previusVehicleId) {
-    return previusVehicleId + `;${currentVehicleId.join(';')}`;
+	if (!!currentVehicleId && previusVehicleId) {
+  	return previusVehicleId + `;${currentVehicleId.join(';')}`;
   }
-
+  
   return currentVehicleId ?? previusVehicleId;
 }
 
-const getParsedMods = (mods) => mods.reduce((previus, current) => {
-  const { workshop_id, mod_id, vehicle_id } = previus;
-  const map_id = map_id_template(current, previus);
+const splitModId = (modId) => console.log(modId);
 
-  return {
-    ...previus,
-    workshop_id: workshop_id.length > 0 ? workshop_id + `;${current.workshop_id}` : current.workshop_id,
-    mod_id: mod_id.length > 0 ? mod_id + `;${current.mod_id}` : current.mod_id,
-    map_id: map_id,
-    vehicle_id: vehicle_id_template(current.vehicle_id, vehicle_id)
-  }
-}, { mod_id: '', workshop_id: '', map_id: '', vehicle_id: '' });
+const getParsedMods = (mods) => {
+    const parsedMods = mods.reduce((previus, current) => {
+    const { workshop_id, mod_id, vehicle_id } = previus;
+    const map_id = map_id_template(current, previus);
+
+    return {
+      workshop_id: [...previus.workshop_id, current.workshop_id] ,
+      mod_id: [...previus.mod_id, current.mod_id],
+      map_id: [...previus.map_id, current.map_id],
+      vehicle_id: vehicle_id_template(current.vehicle_id, vehicle_id)
+    }
+  }, { mod_id: [], workshop_id: [], map_id: [], vehicle_id: '' });
+  const workshop = parsedMods.workshop_id.join(';')
+  const modId = parsedMods.mod_id.join(';')
+  console.log('workshop', workshop)
+  console.log('', parsedMods.workshop_id.length, parsedMods.mod_id.length)
+  console.log('modId', modId)
+}
+
 
 const getParsedName = (mods) => mods.map((mod) => mod.name);
 
-const namesParsed = getParsedName(mods)
 
 const modsParsed = getParsedMods(mods);
 
@@ -536,8 +538,4 @@ const getFilteredNames = (id) => {
   return modsParsed.map((mod) => mod.name);
 }
 
-console.log('modsParsed:', modsParsed)
-console.log('')
-console.log('')
-console.log('')
-console.log('namesParsed:', namesParsed)
+
