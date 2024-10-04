@@ -11,44 +11,44 @@ const types = {
 const mods = [
   {
     name: 'Rv interior',
-    type: types[3],
+    type: types.vehicle,
     workshop_id: '2822286426',
     mod_id: 'RV_Interior_MP',
     map_id: 'vehicle_interior'
   },
   {
     name: 'Autotsar Motorclub',
-    type: types[3],
+    type: types.configuration,
     workshop_id: '2778576730',
     mod_id: 'amclub',
   },
   {
     name: 'Tsars Common Library 2.0',
-    type: types[3],
+    type: types.configuration,
     workshop_id: '2392709985',
     mod_id: 'tsarslib',
   },
   {
     name: 'Tsars Common Library 2.0 cache true music mp',
-    type: types[3],
+    type: types.configuration,
     workshop_id: '2688809268',
     mod_id: 'TsarcraftCache2',
   },
   {
     name: 'Mod checker',
-    type: types[3],
+    type: types.configuration,
     workshop_id: '2937651968',
     mod_id: 'Mod_Checkers',
   },
   {
     name: 'Equipment UI',
-    type: types[2],
+    type: types.configuration,
     workshop_id: '2950902979',
     mod_id: 'EQUIPMENT_UI',
   },
   {
     name: 'Mod options',
-    type: types[2],
+    type: types.configuration,
     workshop_id: '2169435993',
     mod_id: 'modoptions',
   },
@@ -60,7 +60,7 @@ const mods = [
   },
   {
     name: 'Brita weapon pack',
-    type: types[3],
+    type: types.weapons,
     workshop_id: '2200148440',
     mod_id: 'Brita',
   },
@@ -498,7 +498,7 @@ const mods = [
   },
   {
     name: 'Vehicle Repair Overhaul',
-    type: types.weapons,
+    type: types.craft,
     workshop_id: '2757712197',
     mod_id: 'VehicleRepairOverhaul',
   },
@@ -537,6 +537,30 @@ const mods = [
     type: types.character,
     workshop_id: '3268487204',
     mod_id: 'Bandits',
+  },
+  {
+    name: 'Functional Chainsaw',
+    type: types.weapons,
+    workshop_id: '2921981763',
+    mod_id: 'FunctionalChainsaw',
+  },
+  {
+    name: 'Horde Night',
+    type: types.weapons,
+    workshop_id: '2714850307',
+    mod_id: 'HordeNight01',
+  },
+  {
+    name: 'Bushcraft Gear - Tools',
+    type: types.weapons,
+    workshop_id: '2423906082',
+    mod_id: 'BCGTools',
+  },
+  {
+    name: 'Tactical Weapons [41.65+]',
+    type: types.weapons,
+    workshop_id: '2324223029',
+    mod_id: 'Tactical Weapons',
   },
 ];
 
@@ -587,3 +611,5 @@ const getFilteredNames = (id) => {
   const modsParsed = mods.filter((mod) => mod.type != id);
   return modsParsed.map((mod) => mod.name);
 }
+
+
