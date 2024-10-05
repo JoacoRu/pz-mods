@@ -11,44 +11,44 @@ const types = {
 const mods = [
   {
     name: 'Rv interior',
-    type: types.vehicle,
+    type: types[3],
     workshop_id: '2822286426',
     mod_id: 'RV_Interior_MP',
     map_id: 'vehicle_interior'
   },
   {
     name: 'Autotsar Motorclub',
-    type: types.configuration,
+    type: types[3],
     workshop_id: '2778576730',
     mod_id: 'amclub',
   },
   {
     name: 'Tsars Common Library 2.0',
-    type: types.configuration,
+    type: types[3],
     workshop_id: '2392709985',
     mod_id: 'tsarslib',
   },
   {
     name: 'Tsars Common Library 2.0 cache true music mp',
-    type: types.configuration,
+    type: types[3],
     workshop_id: '2688809268',
     mod_id: 'TsarcraftCache2',
   },
   {
     name: 'Mod checker',
-    type: types.configuration,
+    type: types[3],
     workshop_id: '2937651968',
     mod_id: 'Mod_Checkers',
   },
   {
     name: 'Equipment UI',
-    type: types.configuration,
+    type: types[2],
     workshop_id: '2950902979',
     mod_id: 'EQUIPMENT_UI',
   },
   {
     name: 'Mod options',
-    type: types.configuration,
+    type: types[2],
     workshop_id: '2169435993',
     mod_id: 'modoptions',
   },
@@ -60,7 +60,7 @@ const mods = [
   },
   {
     name: 'Brita weapon pack',
-    type: types.weapons,
+    type: types[3],
     workshop_id: '2200148440',
     mod_id: 'Brita',
   },
@@ -280,7 +280,7 @@ const mods = [
     type: types.vehicle,
     workshop_id: '2811383142',
     mod_id: '83amgeneralM923',
-    vehicle_id: '83amgeneralM923'
+    vehicle_id: ['83amgeneralM923']
   },
   {
     name: '87 TOYOTA Land Cruiser FJ60',
@@ -498,7 +498,7 @@ const mods = [
   },
   {
     name: 'Vehicle Repair Overhaul',
-    type: types.craft,
+    type: types.weapons,
     workshop_id: '2757712197',
     mod_id: 'VehicleRepairOverhaul',
   },
@@ -551,16 +551,52 @@ const mods = [
     mod_id: 'HordeNight01',
   },
   {
-    name: 'Bushcraft Gear - Tools',
-    type: types.weapons,
-    workshop_id: '2423906082',
-    mod_id: 'BCGTools',
+    name: 'HydroCraft b41 Continued',
+    type: types.craft,
+    workshop_id: '2778991696',
+    mod_id: 'Hydrocraft',
   },
   {
-    name: 'Tactical Weapons [41.65+]',
-    type: types.weapons,
-    workshop_id: '2324223029',
-    mod_id: 'Tactical Weapons',
+    name: 'Random Zombies',
+    type: types.configuration,
+    workshop_id: '2818577583',
+    mod_id: 'BLTRandomZombies',
+  },
+  {
+    name: 'Tow Truck',
+    type: types.vehicle,
+    workshop_id: '2884859083',
+    mod_id: 'STowTruck;STowTruck_M62Patch;STowTruck_SVUPatch;STowTruck_Vanilla',
+  },
+  {
+    name: 'Filibuster Rhymes Used Cars!',
+    type: types.vehicle,
+    workshop_id: '1510950729',
+    mod_id: 'FRUsedCars;FRUsedCarsFT;FRUsedCarsNLF;FRUsedCarsNRN',
+  },
+  {
+    name: 'Walter Whites Van (Filibuster Rhymes Used Cars!)',
+    type: types.vehicle,
+    workshop_id: '2706332245',
+    mod_id: 'WalterWhitesRV',
+  },
+  {
+    name: 'Sprinter Trueno AE86',
+    type: types.vehicle,
+    workshop_id: '2781895054',
+    mod_id: 'SprinterAE86',
+  },
+  {
+    name: 'Mazda MX-5 Miata',
+    type: types.vehicle,
+    workshop_id: '2749103052',
+    mod_id: 'MazdaMiatafhq;MiataNoWinkSpawn',
+  },
+  {
+    name: 'Toyota Supra Mk. IV',
+    type: types.vehicle,
+    workshop_id: '2742154419',
+    mod_id: 'SupraMkIVfhq',
   },
 ];
 
@@ -572,12 +608,10 @@ const map_id_template = (current, previus) => {
   return (previus.map_id?.length) ? previus.map_id + `;${current.map_id}` : current?.map_id
 }
 
-const vehicle_id_template = (currentVehicleId, previusVehicleId) => {
-	if (!!currentVehicleId && previusVehicleId) {
-  	return previusVehicleId + `;${currentVehicleId.join(';')}`;
-  }
-  
-  return currentVehicleId ?? previusVehicleId;
+const vehicleIdTemplate = (vehicleId) => {
+  if (!vehicleId?.length) return [];
+  console.log(vehicleId)
+  return vehicleId
 }
 
 const splitModId = (modId) => console.log(modId);
@@ -591,14 +625,18 @@ const getParsedMods = (mods) => {
       workshop_id: [...previus.workshop_id, current.workshop_id] ,
       mod_id: [...previus.mod_id, current.mod_id],
       map_id: [...previus.map_id, current.map_id],
-      vehicle_id: vehicle_id_template(current.vehicle_id, vehicle_id)
+      vehicle_id: [...previus.vehicle_id, ...vehicleIdTemplate(current.vehicle_id)]
     }
-  }, { mod_id: [], workshop_id: [], map_id: [], vehicle_id: '' });
-  const workshop = parsedMods.workshop_id.join(';')
-  const modId = parsedMods.mod_id.join(';')
+  }, { mod_id: [], workshop_id: [], map_id: [], vehicle_id: [] });
+  const workshop = parsedMods.workshop_id.join(';');
+  const modId = parsedMods.mod_id.join(';');
+  console.log(parsedMods.vehicle_id)
+  const vehicleId = parsedMods.vehicle_id.join(';');
   console.log('workshop', workshop)
   console.log('', parsedMods.workshop_id.length, parsedMods.mod_id.length)
   console.log('modId', modId)
+  console.log('vehicleId', vehicleId)
+  
 }
 
 
