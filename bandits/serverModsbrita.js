@@ -5,7 +5,8 @@ const types = {
   configuration: 'configuration', 
   weapons: 'weapons',
   craft: 'craft',
-  cloth: 'cloth'
+  cloth: 'cloth',
+  map: 'map'
 }
 
 const mods = [
@@ -14,7 +15,7 @@ const mods = [
     type: types[3],
     workshop_id: '2822286426',
     mod_id: 'RV_Interior_MP',
-    map_id: 'vehicle_interior'
+    map_id: ['vehicle_interior']
   },
   {
     name: 'Autotsar Motorclub',
@@ -81,7 +82,7 @@ const mods = [
     type: types[2],
     workshop_id: '2196102849',
     mod_id: 'RavenCreek',
-    map_id: 'RavenCreek'
+    map_id: ['RavenCreek']
   },
   {
     name: 'Simple Status',
@@ -181,49 +182,49 @@ const mods = [
   },
   {
     name: 'You drive, I sleep',
-    type: types[2],
+    type: types.qualityOfLife,
     workshop_id: '2830570280',
     mod_id: 'YouDriveISleep',
   },
   {
     name: '50% metal weight',
-    type: types[2],
+    type: types.qualityOfLife,
     workshop_id: '2829657632',
     mod_id: '50%metalweight',
   },
   {
     name: 'DIY Engine Parts!',
-    type: types[0],
+    type: types.craft,
     workshop_id: '2770498315',
     mod_id: 'DIY_EngineParts',
   },
   {
     name: 'Riding Mower (Cortadora de pasto)',
-    type: types[0],
+    type: types.vehicle,
     workshop_id: '2771297715',
     mod_id: 'RidingMower',
   },
   {
     name: 'DIY VEHICLES PARTS!',
-    type: types[2],
+    type: types.craft,
     workshop_id: '2795814840',
     mod_id: 'DIY_VehicleParts!;DIY_VehicleParts!_GlassWindow',
   },
   {
     name: 'Plain Moodles',
-    type: types[2],
+    type: types.qualityOfLife,
     workshop_id: '3008416736',
     mod_id: 'BION_PlainMoodles',
   },
   {
     name: 'Skyler DrugMod [Build 41+]',
-    type: types[2],
+    type: types.character,
     workshop_id: '2900366269',
     mod_id: 'DrugMod',
   },
   {
     name: 'Smoker',
-    type: types[2],
+    type: types.qualityOfLife,
     workshop_id: '2026976958',
     mod_id: 'Smoker',
   },
@@ -235,7 +236,7 @@ const mods = [
   },
   {
     name: 'Braven Utilities',
-    type: types[2],
+    type: types.configuration,
     workshop_id: '2850135071',
     mod_id: 'BB_Utils',
   },
@@ -407,10 +408,10 @@ const mods = [
   },
   {
     name: 'Over the River',
-    type: types[0],
+    type: types.map,
     workshop_id: '926737806',
     mod_id: 'Otr',
-    map_id: 'Otr',
+    map_id: ['Otr'],
   },
   {
     name: 'Fiat 600 1970 (Seat 600 / Zastava 750)',
@@ -608,9 +609,8 @@ const map_id_template = (current, previus) => {
   return (previus.map_id?.length) ? previus.map_id + `;${current.map_id}` : current?.map_id
 }
 
-const vehicleIdTemplate = (vehicleId) => {
+const handleIdTemplate = (vehicleId) => {
   if (!vehicleId?.length) return [];
-  console.log(vehicleId)
   return vehicleId
 }
 
@@ -624,19 +624,23 @@ const getParsedMods = (mods) => {
     return {
       workshop_id: [...previus.workshop_id, current.workshop_id] ,
       mod_id: [...previus.mod_id, current.mod_id],
-      map_id: [...previus.map_id, current.map_id],
-      vehicle_id: [...previus.vehicle_id, ...vehicleIdTemplate(current.vehicle_id)]
+      map_id: [...previus.map_id, ...handleIdTemplate(current.map_id) ],
+      vehicle_id: [...previus.vehicle_id, ...handleIdTemplate(current.vehicle_id)]
     }
   }, { mod_id: [], workshop_id: [], map_id: [], vehicle_id: [] });
+  
   const workshop = parsedMods.workshop_id.join(';');
   const modId = parsedMods.mod_id.join(';');
-  console.log(parsedMods.vehicle_id)
   const vehicleId = parsedMods.vehicle_id.join(';');
-  console.log('workshop', workshop)
-  console.log('', parsedMods.workshop_id.length, parsedMods.mod_id.length)
-  console.log('modId', modId)
-  console.log('vehicleId', vehicleId)
+  const mapId = parsedMods.vehicle_id.join(';');
   
+  console.log('mod_id: ',modId);
+  console.log('');
+  console.log('workshop_id: ', workshop);
+  console.log('');
+  console.log('vehicle_id: ', vehicleId);
+  console.log('');
+  console.log('map_id: ', mapId);
 }
 
 
@@ -644,10 +648,5 @@ const getParsedName = (mods) => mods.map((mod) => mod.name);
 
 
 const modsParsed = getParsedMods(mods);
-
-const getFilteredNames = (id) => {
-  const modsParsed = mods.filter((mod) => mod.type != id);
-  return modsParsed.map((mod) => mod.name);
-}
 
 
